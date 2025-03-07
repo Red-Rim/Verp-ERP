@@ -1,6 +1,10 @@
 const express = require("express");
 const dotenv = require("dotenv");
 const connectDB = require("./config/db");
+
+const clientRoutes = require("./routes/clientRoutes");
+const invoiceRoutes = require("./routes/invoiceRoutes");
+const orderRoutes = require("./routes/orderRoutes");
 const authRoutes = require("./routes/authRoutes");
 
 dotenv.config();
@@ -9,12 +13,11 @@ connectDB();
 const app = express();
 app.use(express.json());
 
-app.use("/api/auth", authRoutes);
-
-// ✅ Add this root route to check if the server is running
-app.get("/", (req, res) => {
-  res.send("Server is running!");
-});
+//routes
+app.use("/api/clients", clientRoutes);
+app.use("/api/invoices", invoiceRoutes);
+app.use("/api/orders", orderRoutes);
+app.use("/api", authRoutes);
 
 const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => console.log('\x1b[30;42m%s\x1b[0m',`Server running on port ${PORT}`));
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
