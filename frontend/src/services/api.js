@@ -1,13 +1,8 @@
-const API_URL = "http://localhost:5000/api";
+import axios from 'axios';
 
-// Fetch Clients
-export const getClients = async () => {
-  const res = await fetch(`${API_URL}/clients`);
-  return await res.json();
-};
+const API_URL = 'http://localhost:5000/api';
 
-// Fetch Orders
-export const getOrders = async () => {
-  const res = await fetch(`${API_URL}/orders`);
-  return await res.json();
+export const fetchClients = async () => {
+  const response = await axios.get(`${API_URL}/clients`);
+  return response.data;
 };

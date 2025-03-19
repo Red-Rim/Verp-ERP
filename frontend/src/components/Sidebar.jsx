@@ -1,17 +1,28 @@
-import { Link } from "react-router-dom";
-import { FaHome, FaUser, FaClipboardList, FaFileInvoice } from "react-icons/fa";
+import { Home, Users, FileText, ShoppingCart } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const Sidebar = () => {
   return (
-    <aside className="w-64 bg-gray-800 text-white h-screen p-5 fixed">
-      <h2 className="text-xl font-semibold mb-6">Menu</h2>
-      <ul>
-        <li className="mb-4"><Link to="/" className="flex items-center gap-2 hover:text-gray-400"><FaHome /> Dashboard</Link></li>
-        <li className="mb-4"><Link to="/clients" className="flex items-center gap-2 hover:text-gray-400"><FaUser /> Clients</Link></li>
-        <li className="mb-4"><Link to="/orders" className="flex items-center gap-2 hover:text-gray-400"><FaClipboardList /> Orders</Link></li>
-        <li><Link to="/invoices" className="flex items-center gap-2 hover:text-gray-400"><FaFileInvoice /> Invoices</Link></li>
-      </ul>
-    </aside>
+    <div className="bg-gradient-to-b from-[#1e1e2f] to-[#2b2b42] w-64 h-screen p-6 fixed">
+      <h2 className="text-2xl font-semibold text-white mb-10 tracking-wide">Menu</h2>
+      <nav className="flex flex-col gap-6">
+        {[
+          { icon: <Home />, label: 'Dashboard', path: '/' },
+          { icon: <Users />, label: 'Clients', path: '/clients' },
+          { icon: <FileText />, label: 'Invoices', path: '/invoices' },
+          { icon: <ShoppingCart />, label: 'Orders', path: '/orders' }
+        ].map((item) => (
+          <Link
+            key={item.label}
+            to={item.path}
+            className="flex items-center gap-4 text-gray-300 hover:bg-white/10 py-3 px-4 rounded-lg transition"
+          >
+            {item.icon}
+            <span className="font-medium">{item.label}</span>
+          </Link>
+        ))}
+      </nav>
+    </div>
   );
 };
 
