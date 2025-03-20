@@ -24,6 +24,8 @@ const clientRoutes = require("./routes/clientRoutes");
 const invoiceRoutes = require("./routes/invoiceRoutes");
 const orderRoutes = require("./routes/orderRoutes");
 const authRoutes = require("./routes/authRoutes");
+const projectRoutes = require("./routes/projectRoutes");
+const productRoutes = require("./routes/productRoutes");
 
 dotenv.config();
 connectDB();
@@ -36,6 +38,8 @@ app.use("/api/clients", clientRoutes);
 app.use("/api/invoices", invoiceRoutes);
 app.use("/api/orders", orderRoutes);
 app.use("/api", authRoutes);
+app.use("/api/projects", projectRoutes);
+app.use("/api/products", productRoutes);
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
